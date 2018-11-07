@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        height: 70px;
+        width: 260px;
+        /*border: 1px solid red;*/
+        font-size: 12px;
+        /*color:#8a95a7*/
+      }
+      div{
+        /*border: 1px solid green;*/
+      }
+      .table{
+        width: 280px;
+        height: 140px;
+        padding-left: 15px;
+      }
+      .row{
+        height: 35px;
+        padding: 5px;
+        clear: both;
+      }
+      .col{
+        height: 25px;
+        width: 110px;
+        display: inline-block;
+        padding: 5px;
+        clear: both;
+        vertical-align: top;
+      }
+      .col-title{
+        height: 25px;
+        width: 60px;
+        display: inline-block;
+        padding: 5px;
+        clear: both;
+        vertical-align: top;
+      }
+      .col-full{
+        height: 25px;
+        width: 100%;
+        display: inline-block;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table">
+        <div class="row">
+            <div class="col-title"><label for="switch_btn">启用</label></div>
+            <div class="col"><input type="checkbox" name="switch_btn" id="switch_btn" value="true" /></div>
+        </div>
+        <div class="row">
+            <div class="col-title"><label>透明度</label></div>
+            <div class="col"><input type="range" min="0" max="100" step="1" value="8" id="ov"></div>
+        </div>
+    </div>
+    
+
+    
+
+    <script src="popup.js"></script>
+  </body>
+</html>

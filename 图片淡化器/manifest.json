@@ -1,0 +1,41 @@
+{
+  "name": "图片淡化器",
+  "version": "2.0",
+  "description": "摸鱼神器!",
+  "permissions": [
+    "activeTab", 
+    "declarativeContent", 
+    "storage", 
+    "tabs",
+    "http://*/",
+    "https://*/"],
+  // "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  // "content_scripts": 
+  //   [
+  //       {
+  //           "matches":["http://*/*","https://*/*"],
+  //           "js":["import/jquery.js"]
+  //           // "run_at": "document_end"
+  //       }
+  //   ],
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/dhq16.png",
+      "32": "images/dhq32.png",
+      "48": "images/dhq48.png",
+      "128": "images/dhq128.png"
+    }
+  },
+  "icons": {
+      "16": "images/dhq16.png",
+      "32": "images/dhq32.png",
+      "48": "images/dhq48.png",
+      "128": "images/dhq128.png"
+  },
+  "manifest_version": 2
+}
