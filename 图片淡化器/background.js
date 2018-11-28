@@ -32,31 +32,38 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 function updateImgs(tabid) {
-    chrome.tabs.get(tabid, function(t) {
-        if (t.url && t.url.startsWith("http")) {
-            chrome.storage.sync.get('isOpen', function(data) {
-                if (data.isOpen) {
-                    hiddenImgs(tabid)
-                } else {
-                    showImgs(tabid)
-                }
-            });
-        }
-    })
+    try{
+        chrome.tabs.get(tabid, function(t) {
+            if (t.url && t.url.startsWith("http")) {
+                chrome.storage.sync.get('isOpen', function(data) {
+                    if (data.isOpen) {
+                        showImgs(tabid)
+                        hiddenImgs(tabid)
+                    } else {
+                        showImgs(tabid)
+                    }
+                });
+            }
+        })
+    }catch(err){
+    }
 }
 
 function hiddenImgs(tabid) {
     chrome.storage.sync.get('opacityValue', function(data) {
         let ov = (data.opacityValue || 8) / 100;
-        showImgs(tabid)
-        chrome.tabs.executeScript(tabid, {
-            code: "var s = document.createElement('style');s.id='dhq_style';s.innerHTML='img{opacity:"+ov+"}img:hover{opacity:1}';document.head.appendChild(s);"
-        });
+        executeScript(tabid, "var s = document.createElement('style');s.id='dhq_style';s.innerHTML='img{opacity:"+ov+" !important}img:hover{opacity:1 !important}';document.head.appendChild(s);")
     });
 }
 
 function showImgs(tabid) {
-    chrome.tabs.executeScript(tabid, {
-        code: "var dhq_s = document.getElementById('dhq_style');if(dhq_s)document.head.removeChild(dhq_s);"
-    });
+    executeScript(tabid, "var dhq_s = document.getElementById('dhq_style');if(dhq_s)document.head.removeChild(dhq_s);")
+}
+
+function executeScript(tabid, script){
+    try{
+        chrome.tabs.executeScript(tabid, {
+            code: script
+        });
+    }catch(err){}
 }
